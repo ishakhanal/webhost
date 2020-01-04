@@ -1,0 +1,99 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Letsbid-Notifications</title>
+    <link href="{% static 'entries/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'entries/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet">
+    <link href="{% static 'entries/css/clean-blog.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand logo-sty" href="{% url 'letsbid-home' %}">LetsBid</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'letsbid-home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'notification' %}">Notification</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'message' %}">Message</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_contract' %}">Post now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image: url({% static 'entries/img/home-bg.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>LetsBid</h1>
+                        <span class="subheading" style="text-align: center !important;">You Are Notified of the Following Events</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    {% for notification in user_notifications %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <p class="post-meta">
+                        {{ notification.admin_message }}
+                    </p>
+                    <p> Send at: {{ notification.notification_date }}</p>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %} {% if is_paginated %}
+    <hr>
+    <div class="clearfix">
+        {% if page_obj.has_previous %}
+        <a class="btn btn-primary float-left" href="?page={{ page_obj.previous_page_number }}">Previous Posts &rarr;</a> {% endif %} {% if page_obj.has_next %}
+        <a class="btn btn-primary float-right" href="?page={{ page_obj.next_page_number }}">Next Posts &rarr;</a> {% endif %}
+    </div>
+    {% endif %}
+    <hr class="nang-hr">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <p class="copyright text-muted">Copyright &copy; LetsBid 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'entries/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'entries/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+</body>
+
+</html>

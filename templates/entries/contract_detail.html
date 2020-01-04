@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Contract Details</title>
+    <link href="{% static 'entries/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'entries/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet">
+    <link href="{% static 'entries/css/clean-blog.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand logo-sty" href="{% url 'letsbid-home' %}">LetsBid</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'letsbid-home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'letsbid-home' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_contract' %}">Post now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image: url({% static 'entries/img/home-bg.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1 class="nang-titl">{{ object.contract_title }}</h1>
+                        <style>
+                            .subheading p {
+                                text-align: center;
+                            }
+                            
+                            .post-preview p {
+                                margin-top: 10px !important;
+                                margin-bottom: 10px !important;
+                            }
+                        </style>
+                        <span class="subheading">{{ object.contract_details|linebreaks }}</span>
+                        <hr>
+                        <p class="post-meta">Posted by <a href="{% url 'user-details' pk=object.contract_creator.pk %}" class="nang-a"> {{ object.contract_creator }}</a> on {{object.contract_date }}</p><br> {% if object.compdate %}
+                        <h2>Sorry, Bidding has been Closed.</h2>
+                        {% else %}
+                        <a class="btn btn-nang" href="{% url 'add_comment_to_post' pk=contract.pk %}">Bid Your Price</a> {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    {% if object.contract_image1 %}
+                    <img src="{{ object.contract_image1.url }}" alt="isha" height="50%" width="50%" align="left"> {% endif %} {% if object.contract_image2 %}
+                    <img src="{{ object.contract_image2.url }}" alt="isha" height="50%" width="50%" align="right">
+                    <div style="clear: both"></div>{% endif %}
+                    <!-- <br> -->
+                    <!-- <br> -->{% if object.contract_doc %}
+                    <!-- <br> -->
+                    <p class="text-center"> Click the button below to download and view the pdf related with the contract </p>
+                    <center><a class="btn btn-nang" href="{{ object.contract_doc.url }}" type="application/octet-stream .pdf" download="menu.pdf" target="_blank" role="button">Download pdf</a></center>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <br> {% if object.compdate %} {% for comment in contract.comments.all %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <h2 class="post-title"><a>
+              	{{ comment.author }} </a>
+                    </h2>
+                    <p class="post-meta">
+                        {{ comment.text|linebreaks }}
+                    </p>
+                    <p class="post-meta">
+                        on {{ comment.created_date }}</p>
+                    <hr>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <center><strong>No Bids Here Yet</strong></center>
+    {% endfor %} {% else %}
+    <center>
+        <h2> Wait until deadline is reached to view the bids in this contract </h2>
+    </center>
+    {% endif %}
+    <hr class="nang-hr" style="margin-top: 40px">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <p class="copyright text-muted">Copyright &copy; LetsBid 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'entries/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'entries/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+</body>
+
+</html>

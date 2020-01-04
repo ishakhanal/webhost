@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Letsbid-Profile</title>
+    <link href="{% static 'entries/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'entries/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet">
+    <link href="{% static 'entries/css/clean-blog.min.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+            <a class="navbar-brand logo-sty" href="{% url 'letsbid-home' %}">LetsBid</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                Menu
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'letsbid-home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'create_contract' %}">Post now</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image: url({% static 'entries/img/home-bg.jpg' %})">
+        <div class="overlay"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <div class="site-heading">
+                        <h1>{{user.username}}</h1>
+                        <span class="subheading">{{user.profile.bio}}</span>
+                        <p>Please provide all the details asked in order to be a Verified User</p>
+                        <a class="btn btn-nang" href="{% url 'edit_profile' %}">Edit Your Profile</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="row">
+            <div class="nang-info col-lg-8 col-md-10 mx-auto">
+                <h2 class="post-title">General Info</h2>
+                <ul>
+                    <li>
+                        <span>Firstname: </span> <span>{{user.first_name}}</span>
+                    </li>
+                    <li>
+                        <span>Lastname: </span>{{user.last_name}}
+                    </li>
+                    <li>
+                        <span>Date of Birth: </span>{{user.profile.birth_date}}
+                    </li>
+                    <li>
+                        <span>Location: </span>{{user.profile.location}}
+                    </li>
+                    <li>
+                        <span>E-mail: </span>{{user.email}}
+                    </li>
+                    <li>
+                        <span>Phone: </span>{{user.profile.phone_number}}
+                    </li>
+                    <li>
+                        <span>Identity No.: </span>{{user.profile.citizenship_number}}
+                    </li>
+                </ul>
+                {% if user.profile.image %}
+                <img src="{{ user.profile.image.url}}" alt="isha" height="50%" width="50%" align="left"> {% endif %} {% if user.profile.citizenship_image %}
+                <img src="{{ user.profile.citizenship_image.url}}" alt="isha" height="50%" width="50%" align="right"> {% endif %}
+            </div>
+        </div>
+    </div>
+    <hr>
+    <br>
+    <h2 class="post-title" align="center">Your Contracts</h2>
+    <br> {% for contract in user_posts %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="post-preview">
+                    <h2 class="post-title">
+                        {{ contract.contract_title }}
+                    </h2>
+                    <p class="post-meta">
+                        {{ contract.contract_details|truncatechars:250 }}<a class="btn btn-link" href="{% url 'contract-detail' contract.pk %}">View Details &rarr;</a>
+                    </p>
+                    <p class="post-meta">Posted by
+                        <a href="{% url 'user-details' pk=contract.contract_creator.pk %}">{{ contract.contract_creator }}</a> on {{ contract.contract_date }}</p>
+                    <a class="btn btn-primary" href="{% url 'contract-detail' pk=contract.pk %}">Bids</a>
+                    <br>
+                    <hr>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <hr class="nang-hr">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-10 mx-auto">
+                    <p class="copyright text-muted">Copyright &copy; LetsBid 2019</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="{% static 'entries/vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'entries/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/clean-blog.min.js' %}"></script>
+</body>
+
+</html>

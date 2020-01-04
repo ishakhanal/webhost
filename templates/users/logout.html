@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Logout</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user/css/custom.css' %}">
+    <link rel="shortcut icon" href="{% static 'user/ico/favicon.png' %}">
+</head>
+
+<body>
+    <div class="container ">
+        <div class="row">
+            <div class="login-container col-lg-4 col-md-6 col-sm-8 col-xs-12">
+                <div class="login-title text-center">
+                    <h2><span>Lets<strong>Bid</strong></span></h2>
+                </div>
+                <div class="login-content">
+                    <div class="login-header ">
+                        <h3><strong>Thank You</strong></h3>
+                        <h5 style="color: #e92039">You have successfully logged Out !!!</h5>
+                    </div>
+                    <div class="login-body">
+                        Would you like to Bid again? or
+                        <br> Publish a contract?
+                        <br> Click here to
+                        <h4><a href="{% url 'login' %}">Login back</a></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

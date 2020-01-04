@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'user/css/custom.css' %}">
+    <link rel="shortcut icon" href="{% static 'user/ico/favicon.png' %}">
+</head>
+
+<body>
+    <div class="container ">
+        <div class="row">
+            <div class="login-container col-lg-4 col-md-6 col-sm-8 col-xs-12">
+                <div class="login-title text-center">
+                    <h2><span>Lets<strong>Bid</strong></span></h2>
+                </div>
+                <div class="login-content">
+                    <div class="login-header ">
+                        <h2><strong>Welcome</strong></h2>
+                        <p class="nang-p-rst">We connect contracter with bidders</p>
+                    </div>
+                    <div class="text-center"><img src="https://www.unsplash.it/80" style="border-radius: 50%" alt=""></div>
+                    <div class="login-body">
+                        <form role="form" action="" method="POST" class="login-form">
+                            {% csrf_token %} {{form.as_p}}
+                            <div class="form-group text-right">
+                                <a href="{% url 'password_reset' %}" class="bold">Forgot password?</a>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-nang form-control"><strong>Sign In</strong></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="login-footer text-center template">
+                    <h4>Don't have an account?<br>
+                        <a href="{% url 'register' %}" class="bold"><strong>Sign Up</strong> </a></h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+
+</html>

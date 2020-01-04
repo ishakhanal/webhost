@@ -1,0 +1,205 @@
+@import'https://fonts.googleapis.com/css?family=Lobster&display=swap';
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    background-color: #efefef;
+    height: 100vh;
+    font-family: Roboto, sans-serif
+}
+
+.login-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.login-container .login-content {
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, .2), 0 6px 20px 0 rgba(0, 0, 0, .19)
+}
+
+.pos-r {
+    position: relative
+}
+
+.login-container .login-header {
+    padding: 10px 30px;
+    text-align: center
+}
+
+.login-container,
+.login-container a,
+.login-container input {
+    color: #009688
+}
+
+.login-container .login-title span {
+    padding: 10px 20px;
+    display: inline-block;
+    letter-spacing: 1px;
+    font-size: 45px;
+    font-family: Lobster, cursive;
+    text-shadow: -1px 1px 1px #112a33
+}
+
+.login-container .login-title span strong {
+    color: #00e0ca
+}
+
+.login-container .login-body {
+    padding: 20px 30px
+}
+
+.login-container .login-body label {
+    display: block
+}
+
+.login-container .login-body input {
+    display: block;
+    width: 100%;
+    outline: none;
+    border: 1px solid #ddd;
+    height: 45px;
+    padding: 5px;
+    color: rgba(0, 0, 0, .6)
+}
+
+.login-container .login-body input.form-control {
+    background: rgba(0, 0, 0, .7);
+    height: 50px;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+    border-left: 3px solid transparent;
+    font-size: 16px;
+    -webkit-transition: all .5s;
+    transition: all .5s
+}
+
+.login-container .login-body input.form-control:focus {
+    border-color: #4bccff
+}
+
+.login-container .login-body input.form-control+i {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 20px;
+    color: #185067;
+    -webkit-transition: all .5s;
+    transition: all .5s
+}
+
+.login-container .login-body input.form-control:focus+i {
+    color: #4bccff
+}
+
+.login-container .login-body button {
+    height: 50px;
+    border-radius: 0;
+    font-size: 20px
+}
+
+.login-container .login-footer {
+    padding: 20px 0
+}
+
+.template h5 a {
+    color: #4bccff
+}
+
+.btn-nang {
+    background: #00e0ca;
+    color: #fff;
+    -webkit-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.btn-nang:hover {
+    background: #009688;
+    color: #fff
+}
+
+.nang-p-rst {
+    margin-top: -6px;
+    font-size: 15px
+}
+
+ul {
+    list-style-position: inside
+}
+
+ul li {
+    font-size: 12px;
+    color: #e92039
+}
+
+.helptext {
+    color: rgba(0, 0, 0, .5);
+    font-size: 13px
+}
+
+.login-cont-nang {
+    top: 0;
+    transform: translate(-50%, 0)!important;
+    -webkit-transform: translate(-50%, 0)!important
+}
+
+textarea {
+    width: 100%;
+    outline: none;
+    border: 1px solid #ddd;
+    resize: vertical;
+    height: 150px;
+    padding: 6px!important;
+    color: rgba(0, 0, 0, .6)
+}
+
+.back-btn {
+    color: #009688;
+    margin-top: 40px
+}
+
+input[type=file] {
+    height: unset!important
+}
+
+@media only screen and (max-width:600px),
+screen and (max-height:610px) {
+    .login-container {
+        padding: 0
+    }
+    .login-container .login-title span {
+        padding: 0;
+        margin-bottom: 10px
+    }
+    .login-container .login-content {
+        background: none;
+        box-shadow: none
+    }
+    .login-header {
+        display: none
+    }
+    .login-container .login-body {
+        padding: 10px
+    }
+    .login-container .login-footer {
+        padding: 0
+    }
+}
+
+@media only screen and (max-height:400px) {
+    .login-container {
+        position: static;
+        -webkit-transform: none;
+        transform: none;
+        padding: 0
+    }
+}
